@@ -229,7 +229,9 @@ public class ControlBlockEntity extends TileEntity implements ITickableTileEntit
     }
 
     public List<LivingEntity> getAllDungeonMobsAlive() {
-        List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, this.getRenderBoundingBox()
+        BlockPos p = this.getBlockPos();
+        AxisAlignedBB box = new AxisAlignedBB(p.getX() - 1, p.getY() - 1, p.getZ() - 1, p.getX() + 1, p.getY() + 1, p.getZ() + 1);
+        List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, box
             .inflate(40));
         list.removeIf(x -> !isInsideDungeon(x.blockPosition()));
         list.removeIf(x -> x instanceof PlayerEntity);

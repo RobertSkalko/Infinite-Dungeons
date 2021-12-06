@@ -8,7 +8,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 public class InfiniteDungeonsMain {
 
     public static boolean RUN_DEV_TOOLS() {
-        return true;
+        return false;
     }
 
     public static final String MODID = "infinite_dungeons";

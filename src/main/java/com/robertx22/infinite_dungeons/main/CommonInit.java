@@ -53,7 +53,7 @@ public class CommonInit {
         Packets.registerClientToServerPacket(NETWORK, new StartDungeonPacket("", ""), 0);
         Packets.registerClientToServerPacket(NETWORK, new BuyPacket(1), 1);
 
-        System.out.println("Divine Missions loaded.");
+        System.out.println("Infinite Dungeons Loaded.");
     }
 
     public void interMod(InterModProcessEvent event) {

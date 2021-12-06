@@ -29,7 +29,7 @@ public class ShopCost {
     }
 
     public static ShopCost voidCoins(int count) {
-        return new ShopCost(ForgeRegistries.ITEMS.getKey(DungeonItems.VOID_KEY.get())
+        return new ShopCost(ForgeRegistries.ITEMS.getKey(DungeonItems.VOID_COIN.get())
             .toString(), count);
     }
 

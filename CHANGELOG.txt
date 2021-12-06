@@ -1,2 +1,2 @@
-v.1.0.0
-* First release
+v.1.0.1
+* Fix void shop and server crash
