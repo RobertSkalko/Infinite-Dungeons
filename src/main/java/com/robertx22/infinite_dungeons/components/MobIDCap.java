@@ -29,7 +29,7 @@ public class MobIDCap implements ICommonCap {
 
     public static MobIDCap get(LivingEntity entity) {
         return entity.getCapability(Data)
-            .orElse(null);
+            .orElse(new MobIDCap(entity));
     }
 
     @Mod.EventBusSubscriber

@@ -1,7 +1,7 @@
 package com.robertx22.infinite_dungeons.database.db_types;
 
 import com.robertx22.infinite_dungeons.db_init.RegistryTypes;
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import com.robertx22.infinite_dungeons.util.FormatUtils;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
@@ -32,11 +32,11 @@ public class DungeonDifficulty implements JsonExileRegistry<DungeonDifficulty>, 
     }
 
     public TranslationTextComponent getTranslatable() {
-        return new TranslationTextComponent(InfiniteDungeonsMain.MODID + ".difficulty." + id);
+        return new TranslationTextComponent(MainID.MODID + ".difficulty." + id);
     }
 
     public ResourceLocation getIconLoc() {
-        return new ResourceLocation(InfiniteDungeonsMain.MODID, "textures/gui/difficulty/" + id + ".png");
+        return new ResourceLocation(MainID.MODID, "textures/gui/difficulty/" + id + ".png");
     }
 
     public List<ITextComponent> getTooltip() {

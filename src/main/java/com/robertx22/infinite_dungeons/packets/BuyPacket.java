@@ -2,7 +2,7 @@ package com.robertx22.infinite_dungeons.packets;
 
 import com.robertx22.infinite_dungeons.components.PlayerIDCap;
 import com.robertx22.infinite_dungeons.database.db_types.layout.ShopEntry;
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.packets.ExilePacketContext;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,7 +19,7 @@ public class BuyPacket extends MyPacket<BuyPacket> {
 
     @Override
     public ResourceLocation getIdentifier() {
-        return InfiniteDungeonsMain.id("buy");
+        return MainID.id("buy");
     }
 
     @Override

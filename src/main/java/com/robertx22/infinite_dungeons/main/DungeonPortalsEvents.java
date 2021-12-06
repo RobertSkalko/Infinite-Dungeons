@@ -16,7 +16,7 @@ public class DungeonPortalsEvents {
         ExileEvents.CHECK_IF_DEV_TOOLS_SHOULD_RUN.register(new EventConsumer<ExileEvents.OnCheckIsDevToolsRunning>() {
             @Override
             public void accept(ExileEvents.OnCheckIsDevToolsRunning event) {
-                if (InfiniteDungeonsMain.RUN_DEV_TOOLS()) {
+                if (MainID.RUN_DEV_TOOLS()) {
                     event.run = true;
                 }
             }

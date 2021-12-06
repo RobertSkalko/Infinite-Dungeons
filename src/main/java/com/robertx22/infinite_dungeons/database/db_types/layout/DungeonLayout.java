@@ -12,7 +12,7 @@ import com.robertx22.infinite_dungeons.database.db_types.layout.config.WaveBased
 import com.robertx22.infinite_dungeons.database.ids.DungeonGroupIds;
 import com.robertx22.infinite_dungeons.database.ids.DungeonTypeIds;
 import com.robertx22.infinite_dungeons.db_init.RegistryTypes;
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import com.robertx22.infinite_dungeons.util.FormatUtils;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
@@ -22,6 +22,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,11 +40,13 @@ public class DungeonLayout implements JsonExileRegistry<DungeonLayout>, IAutoGso
 
     public List<DungeonSpawn> spawns = new ArrayList<>();
 
-    public String shop_list = "";
-
+    // it matches based on priority of shop lists so there's no need for datapack overriding priority trouble
     public ShopList getShopList() {
-        return DungeonsDB.ShopLists()
-            .get(shop_list);
+        List<ShopList> list = DungeonsDB.ShopLists()
+            .getFiltered(x -> x.for_layout_id.equals(GUID()));
+        list.sort(Comparator.comparing(o -> -o.priority));
+
+        return list.get(0);
     }
 
     public HashMap<CompletitionScore, ScoreConfig> score_configs = new HashMap<>();
@@ -53,7 +56,7 @@ public class DungeonLayout implements JsonExileRegistry<DungeonLayout>, IAutoGso
     public CleanUpDungeonConfig clean_up_config = null;
 
     public ResourceLocation getIconTextureLoc() {
-        return new ResourceLocation(InfiniteDungeonsMain.MODID, "textures/gui/dungeon_icon/" + id + ".png");
+        return new ResourceLocation(MainID.MODID, "textures/gui/dungeon_icon/" + id + ".png");
     }
 
     public CompletitionScore getScore(ControlBlockEntity ce) {
@@ -83,7 +86,7 @@ public class DungeonLayout implements JsonExileRegistry<DungeonLayout>, IAutoGso
     }
 
     public TranslationTextComponent getTranslatable() {
-        return new TranslationTextComponent(InfiniteDungeonsMain.MODID + ".layout." + id);
+        return new TranslationTextComponent(MainID.MODID + ".layout." + id);
     }
 
     @Override

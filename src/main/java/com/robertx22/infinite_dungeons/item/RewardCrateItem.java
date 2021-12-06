@@ -4,7 +4,7 @@ import com.robertx22.infinite_dungeons.database.DungeonsDB;
 import com.robertx22.infinite_dungeons.database.db_types.RewardList;
 import com.robertx22.infinite_dungeons.database.db_types.WeightedReward;
 import com.robertx22.infinite_dungeons.main.DungeonItems;
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,7 +29,7 @@ import java.util.List;
 public class RewardCrateItem extends Item {
 
     public RewardCrateItem() {
-        super(new Properties().tab(InfiniteDungeonsMain.ITEM_GROUP)
+        super(new Properties().tab(MainID.ITEM_GROUP)
             .stacksTo(1));
     }
 
@@ -100,7 +100,7 @@ public class RewardCrateItem extends Item {
                 .get(stack.getOrCreateTag()
                     .getString(TAG));
 
-            return new TranslationTextComponent(InfiniteDungeonsMain.MODID + ".reward_list." + rewardList.GUID())
+            return new TranslationTextComponent(MainID.MODID + ".reward_list." + rewardList.GUID())
                 .withStyle(rewardList.getFormat(), TextFormatting.BOLD);
 
         } catch (Exception e) {

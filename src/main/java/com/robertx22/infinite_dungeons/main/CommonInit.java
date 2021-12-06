@@ -19,12 +19,12 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 
-@Mod(InfiniteDungeonsMain.MODID)
+@Mod(MainID.MODID)
 public class CommonInit {
 
     private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel NETWORK = NetworkRegistry.newSimpleChannel(
-        new ResourceLocation(InfiniteDungeonsMain.MODID, "main"),
+        new ResourceLocation(MainID.MODID, "main"),
         () -> PROTOCOL_VERSION,
         PROTOCOL_VERSION::equals,
         PROTOCOL_VERSION::equals
@@ -57,10 +57,13 @@ public class CommonInit {
     }
 
     public void interMod(InterModProcessEvent event) {
-        RegistryInit.init();
+
     }
 
     public void commonSetupEvent(FMLCommonSetupEvent event) {
+
+        RegistryInit.init();
+
         DungeonCapabilities.reg();
     }
 

@@ -1,6 +1,6 @@
 package com.robertx22.infinite_dungeons.gui.buttons.shop;
 
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;
@@ -10,7 +10,7 @@ public class ShopArrowButton extends ImageButton {
     public static int SIZE_X = 24;
     public static int SIZE_Y = 24;
 
-    static ResourceLocation ID = InfiniteDungeonsMain.id("textures/gui/arrow_right.png");
+    static ResourceLocation ID = MainID.id("textures/gui/arrow_right.png");
 
     Minecraft mc = Minecraft.getInstance();
 

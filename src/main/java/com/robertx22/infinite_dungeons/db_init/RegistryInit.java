@@ -1,6 +1,6 @@
 package com.robertx22.infinite_dungeons.db_init;
 
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 
 public class RegistryInit {
 
@@ -15,7 +15,7 @@ public class RegistryInit {
         RegistryTypes.init();
         AddRegistryContainers.addAll();
         RegisterNonDatapackEntries.register();
-        if (InfiniteDungeonsMain.RUN_DEV_TOOLS()) {
+        if (MainID.RUN_DEV_TOOLS()) {
             AddToDataGen.addAll();
         }
 

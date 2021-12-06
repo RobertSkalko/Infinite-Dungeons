@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class InfiniteDungeonsMain {
+public class MainID {
 
     public static boolean RUN_DEV_TOOLS() {
         return false;

@@ -4,7 +4,7 @@ import com.robertx22.infinite_dungeons.database.CompletitionScore;
 import com.robertx22.infinite_dungeons.database.db_types.layout.DungeonLayout;
 import com.robertx22.infinite_dungeons.database.db_types.layout.DungeonSpawn;
 import com.robertx22.infinite_dungeons.database.db_types.layout.ScoreConfig;
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import net.minecraft.entity.EntityType;
 import net.minecraft.loot.LootTables;
 import net.minecraft.util.ResourceLocation;
@@ -20,12 +20,11 @@ public class DungeonLayoutBuilder {
         DungeonLayoutBuilder b = new DungeonLayoutBuilder();
 
         b.layout.id = id;
-        b.layout.shop_list = id;
         b.layout.dungeon_type = type;
         b.layout.dungeon_group = group;
 
         // todo
-        b.layout.structure_file = new ResourceLocation(InfiniteDungeonsMain.MODID, "dungeons/" + id).toString();
+        b.layout.structure_file = new ResourceLocation(MainID.MODID, "dungeons/" + id).toString();
 
         return b;
 

@@ -1,7 +1,7 @@
 package com.robertx22.infinite_dungeons.database.db_types.group;
 
 import com.robertx22.infinite_dungeons.db_init.RegistryTypes;
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
@@ -30,7 +30,7 @@ public class DungeonGroup implements JsonExileRegistry<DungeonGroup>, IAutoGson<
     }
 
     public TranslationTextComponent getTranslatable() {
-        return new TranslationTextComponent(InfiniteDungeonsMain.MODID + ".dungeon_group." + id);
+        return new TranslationTextComponent(MainID.MODID + ".dungeon_group." + id);
     }
 
     public DungeonGroup edit(Consumer<DungeonGroup> cons) {

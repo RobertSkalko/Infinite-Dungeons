@@ -84,9 +84,20 @@ public class ControlBlockEntity extends TileEntity implements ITickableTileEntit
 
                 if (data.ticks % 40 == 0) {
 
+                    if (data.quest_finished) {
+                        if (!data.cleared) {
+                            if (this.getAllDungeonMobsAlive()
+                                .size() == 0) {
+                                this.data.cleared = true;
+                            }
+                        }
+                    }
+
                     for (PlayerEntity p : getAllPlayers()) {
                         ServerPlayerEntity sp = (ServerPlayerEntity) p;
-                        PlayerIDCap.get(sp).data.buy_history.shop_list = this.data.getDungeonLayout().shop_list;
+                        PlayerIDCap.get(sp).data.buy_history.shop_list = this.data.getDungeonLayout()
+                            .getShopList()
+                            .GUID();
                         PlayerIDCap.get(sp)
                             .syncToClient(sp);
                         sp.connection.send(getUpdatePacket());
@@ -260,7 +271,7 @@ public class ControlBlockEntity extends TileEntity implements ITickableTileEntit
 
     public void spawnRewardsAndFinish(CompletitionScore score) {
 
-        this.data.cleared = true;
+        this.data.quest_finished = true;
 
         BlockPos pos = data.chests_pos.get(0);
         if (data.getDungeonLayout().score_configs.containsKey(score)) {
@@ -270,6 +281,9 @@ public class ControlBlockEntity extends TileEntity implements ITickableTileEntit
             VillagerEntity trader = EntityType.VILLAGER.create(level);
             trader.setPos(pos.getX() + 1, pos.getY(), pos.getZ());
             level.addFreshEntity(trader);
+            trader.addEffect(new EffectInstance(Effects.ABSORPTION, 20 * 1000, 10));
+            trader.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 20 * 1000, 10));
+
         }
 
         finishMessage(score);

@@ -1,6 +1,6 @@
 package com.robertx22.infinite_dungeons.item;
 
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,7 +15,7 @@ import java.util.List;
 public class DungeonCurrencyItem extends Item {
 
     public DungeonCurrencyItem() {
-        super(new Properties().tab(InfiniteDungeonsMain.ITEM_GROUP)
+        super(new Properties().tab(MainID.ITEM_GROUP)
             .stacksTo(64));
     }
 
@@ -24,7 +24,7 @@ public class DungeonCurrencyItem extends Item {
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> list, ITooltipFlag flag) {
 
         try {
-            list.add(InfiniteDungeonsMain.ofTranslation("coin_drop"));
+            list.add(MainID.ofTranslation("coin_drop"));
 
         } catch (Exception e) {
             // e.printStackTrace();

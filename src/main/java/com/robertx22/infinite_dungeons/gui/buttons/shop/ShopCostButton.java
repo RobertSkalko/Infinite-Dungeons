@@ -2,7 +2,7 @@ package com.robertx22.infinite_dungeons.gui.buttons.shop;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.infinite_dungeons.database.db_types.layout.ShopEntry;
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import com.robertx22.library_of_exile.utils.RenderUtils;
 import net.minecraft.client.Minecraft;
@@ -19,7 +19,7 @@ public class ShopCostButton extends ImageButton {
     public static int SIZE_X = 24;
     public static int SIZE_Y = 24;
 
-    static ResourceLocation ID = InfiniteDungeonsMain.id("textures/gui/shop_cost_button.png");
+    static ResourceLocation ID = MainID.id("textures/gui/shop_cost_button.png");
 
     Minecraft mc = Minecraft.getInstance();
 

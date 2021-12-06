@@ -2,7 +2,7 @@ package com.robertx22.infinite_dungeons.components;
 
 import com.robertx22.infinite_dungeons.block.ControlBlockEntity;
 import com.robertx22.infinite_dungeons.components.data.PlayerData;
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import com.robertx22.library_of_exile.components.forge.BaseProvider;
 import com.robertx22.library_of_exile.components.forge.BaseStorage;
 import com.robertx22.library_of_exile.components.forge.IPlayerCap;
@@ -22,7 +22,7 @@ import java.util.Optional;
 @Mod.EventBusSubscriber
 public class PlayerIDCap implements IPlayerCap {
 
-    public static final ResourceLocation RESOURCE = new ResourceLocation(InfiniteDungeonsMain.MODID, "data");
+    public static final ResourceLocation RESOURCE = new ResourceLocation(MainID.MODID, "data");
 
     @CapabilityInject(PlayerIDCap.class)
     public static final Capability<PlayerIDCap> Data = null;

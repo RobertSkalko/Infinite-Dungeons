@@ -20,7 +20,7 @@ public class ShopListsAdder implements ExileRegistryInit {
     public void registerAll() {
 
         new ShopList().edit(x -> {
-                x.id = DungeonLayoutIds.ABANDONED_PRISON;
+                x.setIdForBaseModPerLayoutId(DungeonLayoutIds.ABANDONED_PRISON);
                 x.shop_entries.addAll(getDefaultVanillaEntries());
 
                 x.shop_entries.add(
@@ -35,7 +35,7 @@ public class ShopListsAdder implements ExileRegistryInit {
             .addToSerializables();
 
         new ShopList().edit(x -> {
-                x.id = DungeonLayoutIds.DIAMOND_LICH_CRYPT;
+                x.setIdForBaseModPerLayoutId(DungeonLayoutIds.DIAMOND_LICH_CRYPT);
                 x.shop_entries.addAll(getDefaultVanillaEntries());
 
                 x.shop_entries.add(
@@ -49,7 +49,7 @@ public class ShopListsAdder implements ExileRegistryInit {
             .addToSerializables();
 
         new ShopList().edit(x -> {
-                x.id = DungeonLayoutIds.UNDEAD_GRAVEYARD;
+                x.setIdForBaseModPerLayoutId(DungeonLayoutIds.UNDEAD_GRAVEYARD);
                 x.shop_entries.addAll(getDefaultVanillaEntries());
                 x.shop_entries.add(
                     new ShopEntry(
@@ -61,13 +61,13 @@ public class ShopListsAdder implements ExileRegistryInit {
             .addToSerializables();
 
         new ShopList().edit(x -> {
-                x.id = DungeonLayoutIds.IMBUED_TREE_CAVE;
+                x.setIdForBaseModPerLayoutId(DungeonLayoutIds.IMBUED_TREE_CAVE);
                 x.shop_entries.addAll(defaultVoidShops());
             })
             .addToSerializables();
 
         new ShopList().edit(x -> {
-                x.id = DungeonLayoutIds.NETHER_FORTRESS;
+                x.setIdForBaseModPerLayoutId(DungeonLayoutIds.NETHER_FORTRESS);
                 x.shop_entries.addAll(defaultNetherShops());
             })
             .addToSerializables();

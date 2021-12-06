@@ -9,6 +9,7 @@ import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
@@ -41,7 +42,13 @@ public class OnMobKill extends EventConsumer<ExileEvents.OnMobDeath> {
                 // only non dungeon mobs can drop keys
                 if (!MobIDCap.get(event.mob)
                     .isDungeonMob()) {
-                    if (validKill && RandomUtils.roll(IDConfig.get().KEY_DROP_CHANCE.get())) {
+                    float chance = IDConfig.get().KEY_DROP_CHANCE.get()
+                        .floatValue();
+                    if (event.mob instanceof SlimeEntity) {
+                        chance *= 0.1F;
+                    }
+
+                    if (validKill && RandomUtils.roll(chance)) {
                         DungeonGroup group = DungeonsDB.Groups()
                             .random();
                         ItemStack stack = new ItemStack(group.getKeyItem());

@@ -2,7 +2,7 @@ package com.robertx22.infinite_dungeons.item;
 
 import com.robertx22.infinite_dungeons.database.DungeonsDB;
 import com.robertx22.infinite_dungeons.database.db_types.group.DungeonGroup;
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -19,7 +19,7 @@ import java.util.List;
 public class DungeonKeyItem extends Item {
 
     public DungeonKeyItem() {
-        super(new Properties().tab(InfiniteDungeonsMain.ITEM_GROUP));
+        super(new Properties().tab(MainID.ITEM_GROUP));
 
     }
 
@@ -63,7 +63,7 @@ public class DungeonKeyItem extends Item {
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> list, ITooltipFlag flag) {
 
         try {
-            list.add(InfiniteDungeonsMain.ofTranslation("key_drop"));
+            list.add(MainID.ofTranslation("key_drop"));
 
         } catch (Exception e) {
             // e.printStackTrace();

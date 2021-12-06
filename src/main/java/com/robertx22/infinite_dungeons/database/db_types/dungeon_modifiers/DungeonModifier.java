@@ -2,7 +2,7 @@ package com.robertx22.infinite_dungeons.database.db_types.dungeon_modifiers;
 
 import com.robertx22.infinite_dungeons.block.ControlBlockEntity;
 import com.robertx22.infinite_dungeons.db_init.RegistryTypes;
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.library_of_exile.registry.ExileRegistry;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
@@ -47,7 +47,7 @@ public abstract class DungeonModifier implements ExileRegistry<DungeonModifier> 
     }
 
     public TextComponent announcement() {
-        return new TranslationTextComponent(InfiniteDungeonsMain.MODID + ".modifier." + this.id);
+        return new TranslationTextComponent(MainID.MODID + ".modifier." + this.id);
     }
 
     public abstract ModifierType getModifierType();

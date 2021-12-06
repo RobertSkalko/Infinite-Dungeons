@@ -9,7 +9,7 @@ import com.robertx22.infinite_dungeons.database.db_types.layout.DungeonLayout;
 import com.robertx22.infinite_dungeons.database.db_types.layout.ShopEntry;
 import com.robertx22.infinite_dungeons.gui.buttons.*;
 import com.robertx22.infinite_dungeons.item.DungeonKeyItem;
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import com.robertx22.library_of_exile.gui.ItemSlotButton;
 import com.robertx22.library_of_exile.registry.FilterListWrap;
 import com.robertx22.library_of_exile.utils.CLOC;
@@ -45,7 +45,7 @@ public class PickDungeonScreen extends BaseScreen implements ILeftRight {
         }
     }
 
-    static ResourceLocation BACKGROUND = InfiniteDungeonsMain.id("textures/gui/dungeon_picker.png");
+    static ResourceLocation BACKGROUND = MainID.id("textures/gui/dungeon_picker.png");
 
     public List<DungeonLayout> layouts = new ArrayList<>();
     public DungeonLayout currentLayout;
@@ -96,6 +96,10 @@ public class PickDungeonScreen extends BaseScreen implements ILeftRight {
             }
 
             shopIndex++;
+
+            if (shopIndex == 8) {
+                break; // max 9 items to show
+            }
 
         }
         xpos = guiLeft + 136;

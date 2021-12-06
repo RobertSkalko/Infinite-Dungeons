@@ -1,7 +1,7 @@
 package com.robertx22.infinite_dungeons.database.db_types;
 
 import com.robertx22.infinite_dungeons.db_init.RegistryTypes;
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import com.robertx22.infinite_dungeons.util.FormatUtils;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
@@ -31,7 +31,7 @@ public class RewardList implements JsonExileRegistry<RewardList>, IAutoGson<Rewa
     }
 
     public TranslationTextComponent getTranslatable() {
-        return new TranslationTextComponent(InfiniteDungeonsMain.MODID + ".reward_list." + id);
+        return new TranslationTextComponent(MainID.MODID + ".reward_list." + id);
     }
 
     public WeightedReward getRandom() {

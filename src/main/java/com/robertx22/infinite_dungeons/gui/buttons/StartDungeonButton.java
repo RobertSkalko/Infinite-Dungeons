@@ -2,7 +2,7 @@ package com.robertx22.infinite_dungeons.gui.buttons;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.infinite_dungeons.gui.PickDungeonScreen;
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import com.robertx22.infinite_dungeons.packets.StartDungeonPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
@@ -20,7 +20,7 @@ public class StartDungeonButton extends ImageButton {
     public static int SIZE_X = 80;
     public static int SIZE_Y = 16;
 
-    static ResourceLocation ID = InfiniteDungeonsMain.id("textures/gui/start_dungeon.png");
+    static ResourceLocation ID = MainID.id("textures/gui/start_dungeon.png");
 
     Minecraft mc = Minecraft.getInstance();
 

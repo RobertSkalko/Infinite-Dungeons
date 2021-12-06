@@ -116,7 +116,7 @@ public class DungeonEvents {
 
                                 players.add(player);
                                 players.addAll(player.level.getNearbyPlayers(EntityPredicate.DEFAULT, player, player.getBoundingBox()
-                                    .inflate(10)));
+                                    .inflate(20)));
 
                                 for (PlayerEntity e : players) {
                                     e.teleportTo(p.getX(), p.getY() + 1, p.getZ());
@@ -173,37 +173,41 @@ public class DungeonEvents {
             @Override
             public void accept(LivingDamageEvent event) {
 
-                // disable environmental damage for dungeon mobs
-                if (event.getEntity() instanceof LivingEntity) {
-                    if (event.getEntity() instanceof PlayerEntity == false) {
-                        MobIDCap.get(event.getEntityLiving())
-                            .getControlBlock()
-                            .ifPresent(x -> {
-                                if (event.getSource()
-                                    .getDirectEntity() == null) {
-                                    event.setAmount(0);
-                                    event.setCanceled(true);
-                                }
-                            });
+                try {
+                    // disable environmental damage for dungeon mobs
+                    if (event.getEntity() instanceof LivingEntity) {
+                        if (event.getEntity() instanceof PlayerEntity == false) {
+                            MobIDCap.get(event.getEntityLiving())
+                                .getControlBlock()
+                                .ifPresent(x -> {
+                                    if (event.getSource()
+                                        .getDirectEntity() == null) {
+                                        event.setAmount(0);
+                                        event.setCanceled(true);
+                                    }
+                                });
+                        }
                     }
-                }
 
-                Entity entity = event.getSource()
-                    .getDirectEntity();
+                    Entity entity = event.getSource()
+                        .getDirectEntity();
 
-                if (entity instanceof LivingEntity) {
-                    LivingEntity en = (LivingEntity) entity;
+                    if (entity instanceof LivingEntity) {
+                        LivingEntity en = (LivingEntity) entity;
 
-                    if (en instanceof PlayerEntity == false) {
+                        if (en instanceof PlayerEntity == false) {
 
-                        MobIDCap cap = MobIDCap.get(en);
+                            MobIDCap cap = MobIDCap.get(en);
 
-                        cap.getControlBlock()
-                            .ifPresent(x -> {
-                                event.setAmount(event.getAmount() * x.data.getDifficulty().mob_dmg_multi);
-                            });
+                            cap.getControlBlock()
+                                .ifPresent(x -> {
+                                    event.setAmount(event.getAmount() * x.data.getDifficulty().mob_dmg_multi);
+                                });
+                        }
 
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }, EventPriority.HIGHEST);

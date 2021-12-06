@@ -2,7 +2,7 @@ package com.robertx22.infinite_dungeons.packets;
 
 import com.robertx22.infinite_dungeons.database.DungeonsDB;
 import com.robertx22.infinite_dungeons.main.DungeonEvents;
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.packets.ExilePacketContext;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,7 +21,7 @@ public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
 
     @Override
     public ResourceLocation getIdentifier() {
-        return InfiniteDungeonsMain.id("start_dungeon");
+        return MainID.id("start_dungeon");
     }
 
     @Override

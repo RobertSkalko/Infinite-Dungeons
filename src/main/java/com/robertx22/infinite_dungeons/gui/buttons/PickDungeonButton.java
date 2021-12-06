@@ -4,7 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.infinite_dungeons.database.db_types.layout.DungeonLayout;
 import com.robertx22.infinite_dungeons.gui.PickDungeonScreen;
-import com.robertx22.infinite_dungeons.main.InfiniteDungeonsMain;
+import com.robertx22.infinite_dungeons.main.MainID;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.gui.widget.button.ImageButton;
@@ -17,7 +17,7 @@ public class PickDungeonButton extends ImageButton {
 
     public DungeonLayout layout;
 
-    static ResourceLocation TEX = InfiniteDungeonsMain.id("textures/gui/select_dungeon_button.png");
+    static ResourceLocation TEX = MainID.id("textures/gui/select_dungeon_button.png");
 
     public PickDungeonButton(PickDungeonScreen screen, DungeonLayout layout, int x, int y) {
         super(x, y, SIZE_X, SIZE_Y, 0, 0, 0, TEX, new IPressable() {

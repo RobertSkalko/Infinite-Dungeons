@@ -35,6 +35,10 @@ public class ControlBlockData {
 
     @Store
     public boolean cleared = false;
+
+    @Store
+    public boolean quest_finished = false;
+
     @Store
     public int current_wave = 0;
 

@@ -1,2 +1,2 @@
-v.1.0.1
-* Fix void shop and server crash
+v.1.0.2
+* Try fix some crashes
