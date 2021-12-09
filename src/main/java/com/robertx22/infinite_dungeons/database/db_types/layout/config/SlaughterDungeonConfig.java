@@ -4,16 +4,16 @@ public class SlaughterDungeonConfig {
 
     public int modifier_every_x_mobs = 25;
 
-    public int total_mobs = 150;
+    public int total_mobs = 125;
 
     public int max_mobs_at_once = 30;
 
-    public int horde_chance = 5;
+    public int horde_chance = 3;
 
     public float horde_multi = 3;
 
     public int spawn_mobs_every_x_sec = 15;
 
-    public int mobs_per_spawn = 5;
+    public int mobs_per_spawn = 4;
 
 }

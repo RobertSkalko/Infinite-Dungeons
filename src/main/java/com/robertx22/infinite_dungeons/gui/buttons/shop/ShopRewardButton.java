@@ -48,7 +48,7 @@ public class ShopRewardButton extends ImageButton {
     public void renderToolTip(MatrixStack matrix, int x, int y) {
         if (isInside(x, y)) {
             List<ITextComponent> tooltip = new ArrayList<>();
-            tooltip.addAll(entry.reward.type.getStackToShow(entry.reward)
+            tooltip.addAll(entry.reward.type.getStack(entry.reward)
                 .getTooltipLines(mc.player, ITooltipFlag.TooltipFlags.NORMAL));
 
             int left = entry.max_uses - PlayerIDCap.get(mc.player).data.buy_history.getOrCreateHistoryOf(entry).amount;
@@ -72,7 +72,7 @@ public class ShopRewardButton extends ImageButton {
         if (renderBackground) {
             super.renderButton(matrix, x, y, f);
         }
-        RenderUtils.renderStack(entry.reward.type.getStackToShow(entry.reward), this.x + 4, this.y + 4);
+        RenderUtils.renderStack(entry.reward.type.getStack(entry.reward), this.x + 4, this.y + 4);
     }
 
 }

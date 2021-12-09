@@ -1,7 +1,10 @@
 package com.robertx22.infinite_dungeons.database.db_types;
 
 import com.robertx22.infinite_dungeons.db_init.RegistryTypes;
+import com.robertx22.infinite_dungeons.exile_events.DungeonDifficultyTooltipEvent;
+import com.robertx22.infinite_dungeons.exile_events.IDExileEvents;
 import com.robertx22.infinite_dungeons.main.MainID;
+import com.robertx22.infinite_dungeons.util.ClientOnly;
 import com.robertx22.infinite_dungeons.util.FormatUtils;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
@@ -22,6 +25,9 @@ public class DungeonDifficulty implements JsonExileRegistry<DungeonDifficulty>, 
     public String id = "";
     public String format = "";
     public int tier = 0;
+
+    public float mns_lvl_req = 0F;
+    public int mns_ilvl_req = 0;
 
     public float mob_hp_multi = 1;
     public float mob_dmg_multi = 1;
@@ -47,6 +53,9 @@ public class DungeonDifficulty implements JsonExileRegistry<DungeonDifficulty>, 
         list.add(new StringTextComponent("Mob HP: " + mob_hp_multi + "x"));
         list.add(new StringTextComponent("Mob DMG: " + mob_dmg_multi + "x"));
         list.add(new StringTextComponent("Coin Drops: " + coin_drop_multi + "x"));
+
+        DungeonDifficultyTooltipEvent event = new DungeonDifficultyTooltipEvent(ClientOnly.getPlayer(), this, list);
+        IDExileEvents.DIFFICULTY_TOOLTIP.callEvents(event);
 
         return list;
     }

@@ -3,6 +3,8 @@ package com.robertx22.infinite_dungeons.item;
 import com.robertx22.infinite_dungeons.database.DungeonsDB;
 import com.robertx22.infinite_dungeons.database.db_types.RewardList;
 import com.robertx22.infinite_dungeons.database.db_types.WeightedReward;
+import com.robertx22.infinite_dungeons.exile_events.IDExileEvents;
+import com.robertx22.infinite_dungeons.exile_events.OnItemGivenEvent;
 import com.robertx22.infinite_dungeons.main.DungeonItems;
 import com.robertx22.infinite_dungeons.main.MainID;
 import com.robertx22.library_of_exile.utils.SoundUtils;
@@ -80,7 +82,14 @@ public class RewardCrateItem extends Item {
                     SoundUtils.playSound(player, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1, 1);
                 }
 
-                reward.reward.give(player);
+                ItemStack rewardstack = reward.reward.type.getStack(reward.reward);
+
+                OnItemGivenEvent event = new OnItemGivenEvent(rewardstack, player).setMadeFromStack(stack);
+                IDExileEvents.ON_ITEM_GIVE.callEvents(event);
+
+                if (player.addItem(rewardstack) == false) {
+                    player.spawnAtLocation(rewardstack, 1F);
+                }
 
                 stack.shrink(1);
 

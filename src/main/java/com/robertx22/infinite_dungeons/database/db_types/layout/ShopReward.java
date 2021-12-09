@@ -2,6 +2,9 @@ package com.robertx22.infinite_dungeons.database.db_types.layout;
 
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.robertx22.infinite_dungeons.exile_events.IDExileEvents;
+import com.robertx22.infinite_dungeons.exile_events.OnItemGivenEvent;
+import com.robertx22.infinite_dungeons.item.RewardCrateItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +20,7 @@ public class ShopReward {
     public enum Type {
         ITEM {
             @Override
-            public ItemStack getStackToShow(ShopReward reward) {
+            public ItemStack getStack(ShopReward reward) {
                 ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(reward.value)), reward.count);
 
                 if (!reward.data.isEmpty()) {
@@ -35,19 +38,19 @@ public class ShopReward {
 
             @Override
             public void giveReward(ShopReward reward, PlayerEntity player) {
-                giveItem(getStackToShow(reward), player);
+                giveItem(getStack(reward), player);
             }
         };
 
         public ITextComponent getStackNameForTooltip(ShopReward reward) {
 
-            ItemStack stack = getStackToShow(reward);
+            ItemStack stack = getStack(reward);
 
             return new StringTextComponent(stack.getCount() + "x ").append(stack.getDisplayName());
 
         }
 
-        public abstract ItemStack getStackToShow(ShopReward reward);
+        public abstract ItemStack getStack(ShopReward reward);
 
         public abstract void giveReward(ShopReward reward, PlayerEntity player);
 
@@ -85,10 +88,21 @@ public class ShopReward {
     }
 
     public static void giveItem(ItemStack stack, PlayerEntity player) {
+
+        if (stack.getItem() instanceof RewardCrateItem) {
+            stack.getOrCreateTag()
+                .putBoolean(OnItemGivenEvent.IS_PRODUCER_BOOLEAN_TAG, true);
+        }
+
+        OnItemGivenEvent event = new OnItemGivenEvent(stack, player);
+        IDExileEvents.ON_ITEM_GIVE.callEvents(event);
+
         if (player.addItem(stack) == false) {
             player.spawnAtLocation(stack, 1F);
         }
+
         player.inventory.setChanged();
+
     }
 
 }

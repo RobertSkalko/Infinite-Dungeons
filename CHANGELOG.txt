@@ -1,2 +1,2 @@
-v.1.0.2
-* Try fix some crashes
+v.1.0.7
+ilvl balance tweak

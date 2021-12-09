@@ -86,7 +86,7 @@ public class PickDungeonScreen extends BaseScreen implements ILeftRight {
             .filter(d -> this.difficulty.tier >= d.getDifficulty().tier)
             .collect(Collectors.toList())) {
 
-            publicAddButton(new ItemSlotButton(entry.reward.type.getStackToShow(entry.reward), xpos, ypos));
+            publicAddButton(new ItemSlotButton(entry.reward.type.getStack(entry.reward), xpos, ypos));
 
             if (shopIndex == 2 || shopIndex == 5) {
                 xpos = guiLeft + 136;

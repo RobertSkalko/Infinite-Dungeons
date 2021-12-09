@@ -7,6 +7,8 @@ import com.robertx22.infinite_dungeons.components.data.BuyHistoryData;
 import com.robertx22.infinite_dungeons.database.db_types.DungeonDifficulty;
 import com.robertx22.infinite_dungeons.database.db_types.group.DungeonGroup;
 import com.robertx22.infinite_dungeons.database.db_types.layout.DungeonLayout;
+import com.robertx22.infinite_dungeons.exile_events.IDExileEvents;
+import com.robertx22.infinite_dungeons.exile_events.TryStartDungeonEvent;
 import com.robertx22.infinite_dungeons.item.DungeonKeyItem;
 import com.robertx22.infinite_dungeons.item.KeyData;
 import com.robertx22.infinite_dungeons.util.ClientOnly;
@@ -15,7 +17,6 @@ import com.robertx22.library_of_exile.utils.Watch;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -52,6 +53,19 @@ public class DungeonEvents {
             World world = player.level;
 
             if (!world.isClientSide) {
+
+                TryStartDungeonEvent event = new TryStartDungeonEvent(player, layout, difficulty);
+                IDExileEvents.TRY_START_DUNGEON.callEvents(event);
+
+                if (!event.canStart) {
+                    return;
+                }
+
+                if (world.dimensionType()
+                    .hasCeiling()) {
+                    player.displayClientMessage(new StringTextComponent("Can't do this in a dimension with a ceiling."), false);
+                    return;
+                }
 
                 Watch watch = new Watch();
 
@@ -115,8 +129,14 @@ public class DungeonEvents {
                             if (state.getBlock() == Placeholders.PLAYER_SPAWN) {
 
                                 players.add(player);
-                                players.addAll(player.level.getNearbyPlayers(EntityPredicate.DEFAULT, player, player.getBoundingBox()
-                                    .inflate(20)));
+
+                                player.level.getEntities(player, player.getBoundingBox()
+                                        .inflate(20))
+                                    .forEach(e -> {
+                                        if (e instanceof PlayerEntity) {
+                                            players.add((PlayerEntity) e);
+                                        }
+                                    });
 
                                 for (PlayerEntity e : players) {
                                     e.teleportTo(p.getX(), p.getY() + 1, p.getZ());

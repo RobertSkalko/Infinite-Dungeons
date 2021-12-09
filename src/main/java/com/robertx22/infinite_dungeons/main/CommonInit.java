@@ -2,6 +2,7 @@ package com.robertx22.infinite_dungeons.main;
 
 import com.robertx22.infinite_dungeons.configs.IDConfig;
 import com.robertx22.infinite_dungeons.db_init.RegistryInit;
+import com.robertx22.infinite_dungeons.exile_events.IDExileEvents;
 import com.robertx22.infinite_dungeons.packets.BuyPacket;
 import com.robertx22.infinite_dungeons.packets.StartDungeonPacket;
 import com.robertx22.library_of_exile.main.Packets;
@@ -53,11 +54,12 @@ public class CommonInit {
         Packets.registerClientToServerPacket(NETWORK, new StartDungeonPacket("", ""), 0);
         Packets.registerClientToServerPacket(NETWORK, new BuyPacket(1), 1);
 
+        IDExileEvents.register();
+
         System.out.println("Infinite Dungeons Loaded.");
     }
 
     public void interMod(InterModProcessEvent event) {
-
     }
 
     public void commonSetupEvent(FMLCommonSetupEvent event) {

@@ -8,7 +8,7 @@ public class DifficultyBuilder {
 
     DungeonDifficulty obj = new DungeonDifficulty();
 
-    public static DifficultyBuilder of(String id, int tier, float hp, float dmg) {
+    public static DifficultyBuilder of(String id, int tier, float hp, float dmg, float mineAndSlashLvlReq, int mnsILVLREQ) {
 
         DifficultyBuilder b = new DifficultyBuilder();
 
@@ -16,6 +16,8 @@ public class DifficultyBuilder {
         b.obj.tier = tier;
         b.obj.mob_hp_multi = hp;
         b.obj.mob_dmg_multi = dmg;
+        b.obj.mns_lvl_req = mineAndSlashLvlReq;
+        b.obj.mns_ilvl_req = mnsILVLREQ;
 
         b.obj.coin_drop_multi = (hp + dmg) / 2F;
 

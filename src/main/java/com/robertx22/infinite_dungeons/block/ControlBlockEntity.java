@@ -245,8 +245,8 @@ public class ControlBlockEntity extends TileEntity implements ITickableTileEntit
         List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, box
             .inflate(40));
         list.removeIf(x -> !isInsideDungeon(x.blockPosition()));
-        list.removeIf(x -> x instanceof PlayerEntity);
-        // todo only mobs marked as dungeon spawns
+        list.removeIf(x -> !MobIDCap.get(x)
+            .isDungeonMob());
         return list;
     }
 
@@ -271,22 +271,24 @@ public class ControlBlockEntity extends TileEntity implements ITickableTileEntit
 
     public void spawnRewardsAndFinish(CompletitionScore score) {
 
-        this.data.quest_finished = true;
+        if (!this.data.quest_finished) {
+            this.data.quest_finished = true;
 
-        BlockPos pos = data.chests_pos.get(0);
-        if (data.getDungeonLayout().score_configs.containsKey(score)) {
-            spawnChestWithLoot(pos, data.getDungeonLayout().score_configs.get(score)
-                .getLootTable());
+            BlockPos pos = data.chests_pos.get(0);
+            if (data.getDungeonLayout().score_configs.containsKey(score)) {
+                spawnChestWithLoot(pos, data.getDungeonLayout().score_configs.get(score)
+                    .getLootTable());
 
-            VillagerEntity trader = EntityType.VILLAGER.create(level);
-            trader.setPos(pos.getX() + 1, pos.getY(), pos.getZ());
-            level.addFreshEntity(trader);
-            trader.addEffect(new EffectInstance(Effects.ABSORPTION, 20 * 1000, 10));
-            trader.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 20 * 1000, 10));
+                VillagerEntity trader = EntityType.VILLAGER.create(level);
+                trader.setPos(pos.getX() + 1, pos.getY(), pos.getZ());
+                level.addFreshEntity(trader);
+                trader.addEffect(new EffectInstance(Effects.ABSORPTION, 20 * 1000, 10));
+                trader.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 20 * 1000, 10));
 
+            }
+
+            finishMessage(score);
         }
-
-        finishMessage(score);
 
     }
 
