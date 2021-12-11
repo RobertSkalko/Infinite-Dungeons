@@ -1,2 +1,2 @@
-v.1.0.7
-ilvl balance tweak
+v.1.0.9
+Should fix infinite mob spawning

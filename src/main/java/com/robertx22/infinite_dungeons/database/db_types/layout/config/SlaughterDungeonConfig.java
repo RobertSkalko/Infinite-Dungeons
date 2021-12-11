@@ -2,11 +2,11 @@ package com.robertx22.infinite_dungeons.database.db_types.layout.config;
 
 public class SlaughterDungeonConfig {
 
-    public int modifier_every_x_mobs = 25;
+    public int modifier_every_x_mobs = 20;
 
-    public int total_mobs = 125;
+    public int total_mobs = 100;
 
-    public int max_mobs_at_once = 30;
+    public int max_mobs_at_once = 25;
 
     public int horde_chance = 3;
 

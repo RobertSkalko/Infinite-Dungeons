@@ -20,33 +20,36 @@ public class CleanUpDungeon extends DungeonType {
 
         CleanUpDungeonConfig config = en.data.getDungeonLayout().clean_up_config;
 
-        if (en.data.ticks % (config.modifier_every_x_seconds * 20) == 0) {
-            en.data.tryAddRandomModifier(en);
-        }
+        if (en.data.mobs_spawned < config.kill_count_to_finish) {
 
-        if (en.data.ticks % 20 == 0) {
+            if (en.data.ticks % (config.modifier_every_x_seconds * 20) == 0) {
+                en.data.tryAddRandomModifier(en);
+            }
 
-            if (en.getAllDungeonMobsAlive()
-                .size() < config.mobs_spawn_when_less_than_x_mobs_alive) {
-                int tospawn = config.mobs_per_spawn;
-                for (int i = 0; i < tospawn; i++) {
-                    en.spawnMob();
+            if (en.data.ticks % 20 == 0) {
+                if (en.getAllDungeonMobsAlive()
+                    .size() < config.mobs_spawn_when_less_than_x_mobs_alive) {
+                    int tospawn = config.mobs_per_spawn;
+                    for (int i = 0; i < tospawn; i++) {
+                        en.spawnMob();
+                    }
                 }
             }
         }
 
         if (en.data.ticks % 50 == 0) {
             en.sendTitleMessage(new StringTextComponent(TextFormatting.GREEN + "" + en.data.mobs_spawned + "/" + config.kill_count_to_finish), STitlePacket.Type.ACTIONBAR);
-        }
 
-        if (en.data.mobs_spawned >= config.kill_count_to_finish) {
-            CompletitionScore score = en.data.getDungeonLayout()
-                .getScore(en);
-            en.spawnRewardsAndFinish(score);
-        }
+            if (en.data.mobs_spawned >= config.kill_count_to_finish && en.getAllDungeonMobsAlive()
+                .isEmpty()) {
+                CompletitionScore score = en.data.getDungeonLayout()
+                    .getScore(en);
+                en.spawnRewardsAndFinish(score);
+            }
 
-        if (en.data.ticks > (config.fail_if_goes_longer_than_x_seconds * 20)) {
-            en.spawnRewardsAndFinish(CompletitionScore.FAIL);
+            if (en.data.ticks > (config.fail_if_goes_longer_than_x_seconds * 20)) {
+                en.spawnRewardsAndFinish(CompletitionScore.FAIL);
+            }
         }
 
     }

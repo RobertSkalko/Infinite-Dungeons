@@ -6,7 +6,7 @@ public class CleanUpDungeonConfig {
 
     public int modifier_every_x_seconds = 25;
 
-    public int kill_count_to_finish = 150;
+    public int kill_count_to_finish = 100;
 
     public int mobs_spawn_when_less_than_x_mobs_alive = 5;
 

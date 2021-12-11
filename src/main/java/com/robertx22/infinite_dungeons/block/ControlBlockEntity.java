@@ -338,6 +338,8 @@ public class ControlBlockEntity extends TileEntity implements ITickableTileEntit
         BlockPos start = data.dungeon_boundary_0;
         BlockPos end = data.dungeon_boundary_1;
 
+        List<PlayerEntity> players = getAllPlayers();
+
         BlockPos pos = null;
 
         while (pos == null) {
@@ -347,6 +349,13 @@ public class ControlBlockEntity extends TileEntity implements ITickableTileEntit
                 RandomRange(start.getY(), end.getY(), level.random),
                 RandomRange(start.getZ(), end.getZ(), level.random)
             );
+
+            if (players.stream()
+                .anyMatch(x -> x.blockPosition()
+                    .distManhattan(trypos) < 8)) {
+                continue;
+            }
+
             if (type == null) {
                 if (level.getBlockState(trypos)
                     .isAir()) {
