@@ -3,6 +3,7 @@ package com.robertx22.infinite_dungeons.item;
 import com.robertx22.infinite_dungeons.database.DungeonsDB;
 import com.robertx22.infinite_dungeons.database.db_types.group.DungeonGroup;
 import com.robertx22.infinite_dungeons.main.MainID;
+import com.robertx22.library_of_exile.registry.FilterListWrap;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -40,9 +41,14 @@ public class DungeonKeyItem extends Item {
 
     public static DungeonGroup getDungeonGroup(Item key) {
         try {
-            return DungeonsDB.Groups()
-                .getFilterWrapped(x -> x.getKeyItem() == key)
-                .random();
+            FilterListWrap<DungeonGroup> wrap = DungeonsDB.Groups()
+                .getFilterWrapped(x -> x.getKeyItem() == key);
+
+            if (wrap.list.isEmpty()) {
+                return null;
+            } else {
+                return wrap.random();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
